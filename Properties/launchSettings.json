@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "AIJobSearchAggregator": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5088",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

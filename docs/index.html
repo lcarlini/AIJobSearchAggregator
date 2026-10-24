@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vagas — busca de empregos .NET e C#</title>
+  <meta name="description" content="Busca local de vagas de .NET e C# no LinkedIn: Grande São Paulo, região de Sorocaba e remoto." />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #efe6da;
+      --ink: #1d1915;
+      --muted: #6d645b;
+      --line: #e2d6c6;
+      --card: #fffdf8;
+      --green: #1f6b4a;
+      --green-ink: #f4fbf7;
+      --copper: #8d4522;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    header {
+      background: var(--ink);
+      color: #f6f1ea;
+      padding: 2.5rem 1.25rem 2rem;
+    }
+    header, main { max-width: 760px; margin: 0 auto; }
+    main { padding: 1.5rem 1.25rem 3rem; }
+    h1 { font-size: 2.4rem; margin: 0 0 0.4rem; letter-spacing: -0.03em; }
+    h2 { font-size: 1.15rem; margin: 1.6rem 0 0.4rem; }
+    p { margin: 0.4rem 0; }
+    a { color: var(--green); }
+    header a { color: #f0d7c4; }
+    .lead { color: #e6ddd2; max-width: 38rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
+    .actions a {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.55rem 0.95rem;
+      background: var(--green);
+      color: var(--green-ink);
+    }
+    .actions a.quiet { background: transparent; color: #f6f1ea; border: 1px solid #4a433c; }
+    .grid { display: grid; gap: 0.8rem; margin-top: 0.8rem; }
+    @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+    article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+    }
+    article h2 { margin-top: 0; }
+    code, pre {
+      font-family: Consolas, "Segoe UI Mono", monospace;
+      font-size: 0.92rem;
+    }
+    pre {
+      background: var(--ink);
+      color: #f6f1ea;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      overflow-x: auto;
+    }
+    ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+    .note { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vagas</h1>
+    <p class="lead">Busca de empregos de .NET e C# na Grande São Paulo, na região de Sorocaba e no remoto. A lista abre no seu computador, com local, salário, stack e o link para se candidatar.</p>
+    <div class="actions">
+      <a href="https://github.com/lcarlini/AIJobSearchAggregator">Código no GitHub</a>
+      <a class="quiet" href="https://github.com/lcarlini/AIJobSearchAggregator#como-abrir">Como abrir</a>
+    </div>
+  </header>
+  <main>
+    <h2>O que ela faz</h2>
+    <div class="grid">
+      <article>
+        <h2>Todo dia, ao abrir</h2>
+        <p>O programa consulta a listagem pública do LinkedIn e mostra as vagas novas na tela. O console acompanha cada página.</p>
+      </article>
+      <article>
+        <h2>Três regiões</h2>
+        <p>Grande São Paulo, Sorocaba e cidades ao redor, e vagas remotas anunciadas para o Brasil.</p>
+      </article>
+      <article>
+        <h2>Informação já separada</h2>
+        <p>Local, modalidade, salário quando o anúncio publica, senioridade, contrato, stack e onde se candidatar.</p>
+      </article>
+      <article>
+        <h2>Sem vaga repetida</h2>
+        <p>Ocultar tira a vaga da mesa. Dá para marcar salva, candidatura, entrevista, oferta ou recusa.</p>
+      </article>
+    </div>
+
+    <h2>Como abrir no seu computador</h2>
+    <p>A busca roda aí, num programa .NET. Esta página só apresenta o projeto.</p>
+    <pre>git clone https://github.com/lcarlini/AIJobSearchAggregator.git
+cd AIJobSearchAggregator
+./run.ps1</pre>
+    <p>O navegador abre em <code>http://localhost:5088</code>.</p>
+
+    <h2>Fonte</h2>
+    <p>A primeira fonte é o LinkedIn, pela listagem pública, sem login. Outra fonte entra implementando <code>IJobSource</code>.</p>
+    <p class="note">Repositório: <a href="https://github.com/lcarlini/AIJobSearchAggregator">github.com/lcarlini/AIJobSearchAggregator</a></p>
+  </main>
+</body>
+</html>

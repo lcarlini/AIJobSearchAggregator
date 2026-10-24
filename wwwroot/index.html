@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vagas</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark">Vagas</span>
+      <p>LinkedIn · .NET e C# · Grande SP, Sorocaba e remoto</p>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="top-actions">
+      <p id="problem" class="problem"></p>
+      <button type="button" id="export">Exportar</button>
+      <button type="button" id="searchNow" class="primary">Buscar agora</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="side">
+      <label class="search">
+        <span>Filtrar a lista</span>
+        <input id="q" type="search" placeholder="Cargo, empresa, stack, nota" />
+      </label>
+
+      <section>
+        <h2>Situação</h2>
+        <div class="chips" data-filter="status">
+          <button type="button" data-value="all" class="on">Na mesa</button>
+          <button type="button" data-value="new">Novas</button>
+          <button type="button" data-value="saved">Salvas</button>
+          <button type="button" data-value="pipeline">Candidaturas</button>
+          <button type="button" data-value="rejected">Recusadas</button>
+          <button type="button" data-value="hidden">Ocultas</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Região</h2>
+        <div class="chips" data-filter="region">
+          <button type="button" data-value="all" class="on">Todas</button>
+          <button type="button" data-value="grande-sp">Grande SP</button>
+          <button type="button" data-value="sorocaba">Sorocaba</button>
+          <button type="button" data-value="remoto">Remoto</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Modalidade</h2>
+        <div class="chips" data-filter="workplace">
+          <button type="button" data-value="all" class="on">Todas</button>
+          <button type="button" data-value="remote">Remoto</button>
+          <button type="button" data-value="hybrid">Híbrido</button>
+          <button type="button" data-value="onsite">Presencial</button>
+          <button type="button" data-value="unknown">Não diz</button>
+        </div>
+      </section>
+
+      <label class="check"><input id="onlyRelevant" type="checkbox" checked /> Só .NET / C#</label>
+      <label class="check"><input id="onlySalary" type="checkbox" /> Só com salário</label>
+
+      <details class="help">
+        <summary>O que entra em cada região</summary>
+        <div id="cityHelp"></div>
+      </details>
+
+      <section class="profiles">
+        <h2>Buscas salvas</h2>
+        <ul id="profileList"></ul>
+        <form id="profileForm">
+          <h3 id="profileHeading">Nova busca</h3>
+          <label>Nome <input name="name" required maxlength="80" placeholder=".NET e C#" /></label>
+          <label>Termos <input name="keywords" required placeholder=".NET | C#" /></label>
+          <p class="hint">Separe termos com |. Cada um vira uma consulta.</p>
+          <fieldset>
+            <legend>Regiões</legend>
+            <label><input type="checkbox" name="region" value="grande-sp" checked /> Grande São Paulo</label>
+            <label><input type="checkbox" name="region" value="sorocaba" checked /> Região de Sorocaba</label>
+            <label><input type="checkbox" name="region" value="remoto" checked /> Remoto no Brasil</label>
+          </fieldset>
+          <label>Publicadas
+            <select name="recency">
+              <option value="day">Últimas 24 horas</option>
+              <option value="week" selected>Última semana</option>
+              <option value="month">Último mês</option>
+            </select>
+          </label>
+          <label>Páginas por termo
+            <input name="pages" type="number" min="1" max="40" value="40" />
+          </label>
+          <p class="hint">Cerca de 10 anúncios por página. A busca para quando a lista do LinkedIn acaba.</p>
+          <label class="check"><input name="enabled" type="checkbox" checked /> Busca ativa</label>
+          <div class="form-actions">
+            <button type="submit" class="primary" id="profileSave">Adicionar</button>
+            <button type="button" id="profileCancel" hidden>Cancelar</button>
+          </div>
+        </form>
+      </section>
+    </aside>
+
+    <main>
+      <div class="list-head">
+        <h1 id="listTitle">Vagas</h1>
+        <p id="listCount"></p>
+      </div>
+      <div id="list" class="list"></div>
+    </main>
+
+    <section id="detail" class="detail">
+      <div class="empty-detail">
+        <h2>Escolha uma vaga</h2>
+        <p>Local, salário, stack e o link para se candidatar aparecem aqui. Ocultar tira a vaga da mesa e ela não volta como nova.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer class="console" id="console">
+    <div class="console-bar">
+      <strong>Console</strong>
+      <span id="runLine">A busca começa ao abrir.</span>
+      <button type="button" id="consoleToggle">Recolher</button>
+    </div>
+    <pre id="log"></pre>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
