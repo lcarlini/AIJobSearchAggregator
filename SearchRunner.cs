@@ -44,7 +44,7 @@ public sealed class SearchRunner
             }
 
             _log.Info("Busca começou. As vagas aparecem na tela conforme entram.");
-            var pageBudget = Math.Clamp(_options.MaxPagesPerRun, 1, 400);
+            var pageBudget = Math.Clamp(_options.MaxPagesPerRun, 1, 800);
             var pagesUsed = 0;
             var stop = false;
 
@@ -179,6 +179,9 @@ public sealed class StartupSearch : BackgroundService
     {
         try
         {
+            if (string.Equals(Environment.GetEnvironmentVariable("VAGAS_SKIP_STARTUP"), "1", StringComparison.Ordinal))
+                return;
+
             await Task.Delay(700, stoppingToken);
             await _runner.RunAsync(stoppingToken);
         }

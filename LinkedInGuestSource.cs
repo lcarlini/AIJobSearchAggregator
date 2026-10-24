@@ -10,6 +10,7 @@ public sealed class LinkedInGuestSource : IJobSource
     private readonly ActivityLog _log;
     private readonly SemaphoreSlim _pace = new(1, 1);
     private readonly int _delay;
+    private readonly int _skipPages;
     private DateTime _next = DateTime.UtcNow;
 
     public LinkedInGuestSource(IHttpClientFactory factory, IOptions<SearchOptions> options, ActivityLog log)
@@ -17,6 +18,7 @@ public sealed class LinkedInGuestSource : IJobSource
         _http = factory.CreateClient("linkedin");
         _log = log;
         _delay = Math.Clamp(options.Value.DelayMilliseconds, 1500, 15000);
+        _skipPages = Math.Clamp(options.Value.SkipPages, 0, 90);
     }
 
     public string Key => "linkedin";
@@ -37,11 +39,12 @@ public sealed class LinkedInGuestSource : IJobSource
             var place = places[placeIndex];
             var pages = placeIndex == 0 ? request.Pages : 1;
             var distance = placeIndex == 0 ? request.Region.DistanceMiles : 10;
-            var start = 0;
+            var skip = placeIndex == 0 ? Math.Min(_skipPages, Math.Max(pages - 1, 0)) : 0;
+            var start = skip * 10;
             var foundHere = 0;
             var failed = false;
 
-            for (var page = 1; page <= pages; page++)
+            for (var page = skip + 1; page <= pages; page++)
             {
                 var fetched = await GetWithRetryAsync(BuildUrl(request, place, distance, start), cancellationToken);
                 if (fetched.Status == 429 || fetched.Body == null)

@@ -104,7 +104,7 @@ public sealed class Database
         interrupted.Parameters.AddWithValue("$now", DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
         interrupted.ExecuteNonQuery();
         using var widen = connection.CreateCommand();
-        widen.CommandText = "UPDATE search_profiles SET pages = 40 WHERE pages <= 15;";
+        widen.CommandText = "UPDATE search_profiles SET pages = 100 WHERE pages = 40;";
         widen.ExecuteNonQuery();
         Seed(connection);
     }
@@ -120,7 +120,7 @@ public sealed class Database
         using var insert = connection.CreateCommand();
         insert.CommandText = """
             INSERT INTO search_profiles (name, keywords, enabled, recency, pages, regions_json)
-            VALUES ($name, $keywords, 1, 'week', 40, $regions);
+            VALUES ($name, $keywords, 1, 'week', 100, $regions);
             """;
         insert.Parameters.AddWithValue("$name", ".NET e C#");
         insert.Parameters.AddWithValue("$keywords", ".NET | C#");

@@ -156,5 +156,6 @@ public sealed class SearchOptions
 {
     public int DelayMilliseconds { get; set; } = 2800;
     public int MaxDetailsPerRun { get; set; } = 8;
-    public int MaxPagesPerRun { get; set; } = 250;
+    public int MaxPagesPerRun { get; set; } = 700;
+    public int SkipPages { get; set; }
 }

@@ -479,7 +479,7 @@ public sealed class JobRepository
             throw new ArgumentException("O nome da busca ficou longo demais.");
 
         var recency = input.Recency is "day" or "week" or "month" ? input.Recency : "week";
-        var pages = Math.Clamp(input.Pages <= 0 ? 40 : input.Pages, 1, 40);
+        var pages = Math.Clamp(input.Pages <= 0 ? 100 : input.Pages, 1, 100);
         var regions = (input.Regions ?? [])
             .Where(key => RegionCatalog.Find(key) != null)
             .Distinct(StringComparer.OrdinalIgnoreCase)
